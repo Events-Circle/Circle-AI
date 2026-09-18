@@ -1,0 +1,60 @@
+{
+  "name": "@events-circle/circle-ai-app",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.30.3",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "build": "tsc && node scripts/copy-schema.mjs",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.mobile.json --noEmit",
+    "test": "pnpm build && node --test tests/*.test.mjs",
+    "contracts:generate": "openapi-typescript contracts/core.openapi.json -o src/api/schema.d.ts",
+    "contracts:verify": "node scripts/verify-contract.mjs",
+    "check": "pnpm contracts:verify && pnpm typecheck && pnpm test",
+    "smoke:staging": "pnpm build && node scripts/smoke-staging.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "export:mobile": "expo export --platform android --platform ios --output-dir mobile-dist",
+    "export:web": "expo export --platform web --output-dir web-dist",
+    "test:ui": "playwright test"
+  },
+  "dependencies": {
+    "@expo/dom-webview": "~57.0.1",
+    "@expo/vector-icons": "^15.0.2",
+    "expo": "~57.0.23",
+    "expo-clipboard": "~57.0.2",
+    "expo-file-system": "~57.0.7",
+    "expo-font": "~57.0.4",
+    "expo-image-picker": "~57.0.18",
+    "expo-linear-gradient": "~57.0.2",
+    "expo-secure-store": "~57.0.4",
+    "openapi-fetch": "0.15.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-qrcode-svg": "^6.3.24",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-svg": "15.15.4",
+    "react-native-web": "~0.21.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/react": "^19.2.0",
+    "openapi-typescript": "7.13.0",
+    "prettier": "^3.8.0",
+    "typescript": "~5.9.3"
+  },
+  "main": "index.ts",
+  "pnpm": {
+    "overrides": {
+      "xcode>uuid": "11.1.1"
+    }
+  }
+}

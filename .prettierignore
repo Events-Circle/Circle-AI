@@ -1,0 +1,10 @@
+node_modules/
+dist/
+mobile-dist/
+web-dist/
+.expo/
+pnpm-lock.yaml
+test-results/
+playwright-report/
+src/api/schema.d.ts
+contracts/core.openapi.json

@@ -1,0 +1,26 @@
+name: Circle AI checks
+on:
+  push:
+    branches: [main, feature/circle-ai-foundation]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check
+      - run: pnpm format:check
+      - run: pnpm contracts:generate
+      - run: git diff --exit-code -- src/api/schema.d.ts
+      - run: pnpm exec expo export --platform all --output-dir web-dist
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:ui
