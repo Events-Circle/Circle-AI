@@ -1,0 +1,10 @@
+{
+  "repository": "Events-Circle/Event-Circle-Main-Core",
+  "commit": "0da872fd38ab096831e00ffe6441490aa9b82931",
+  "sourceSpec": "backend/openapi.json",
+  "sourceTypes": "packages/api-client/src/openapi.d.ts",
+  "sha256": {
+    "contracts/core.openapi.json": "696c35b10d91045364a06484499a089f685119313e9a06d083f8f13b64c975c7",
+    "src/api/schema.d.ts": "037bb81d828a7ac3b5bf9b0e76c9de7b534bf0094fcd6a9550cbd87f2971ed42"
+  }
+}
